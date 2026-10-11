@@ -2,7 +2,7 @@
 
 [Guillotine](https://github.com/benjweaver/guillotine) turns off the built-in
 Apple Silicon MacBook screen and keyboard backlight for remote use. The app is
-signed with Developer ID, notarized, and licensed GPL-3.0-only.
+signed with Developer ID, notarized, and licensed GPL-3.0-or-later.
 
 ```sh
 brew install --cask benjweaver/guillotine/guillotine
