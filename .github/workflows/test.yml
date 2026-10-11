@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    # Standard release downloads work once Ben publishes the repositories.
+    if: ${{ !github.event.repository.private }}
+    runs-on: macos-latest
+    steps:
+      - name: Set up Homebrew with this tap
+        uses: Homebrew/actions/setup-homebrew@main
+      - run: brew style benjweaver/guillotine/guillotine
+      - name: Lint the update script
+        run: |
+          brew install shellcheck
+          shellcheck "$(brew --repository benjweaver/guillotine)/scripts/update-cask.sh"
+      - run: brew audit --cask --strict benjweaver/guillotine/guillotine
+      - run: brew install --cask benjweaver/guillotine/guillotine
+      - name: Verify installed signature and notarization
+        run: |
+          test -d /Applications/Guillotine.app
+          codesign --verify --deep --strict /Applications/Guillotine.app
+          xcrun stapler validate /Applications/Guillotine.app
+          spctl --assess --type execute /Applications/Guillotine.app
