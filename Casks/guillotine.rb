@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 cask "guillotine" do
-  version "1.0.0"
-  sha256 "e7ff885440c358865bdc33a18e055cf304808afa80614641face8e5abf7029ac"
+  version "1.0.1"
+  sha256 "1e6a7b3b054ecd7198ea9fc3647343da41caa56ea11a0eea1a19705e754df53d"
 
   url "https://github.com/benjweaver/guillotine/releases/download/v#{version}/Guillotine-#{version}-macOS.zip"
   name "Guillotine"
